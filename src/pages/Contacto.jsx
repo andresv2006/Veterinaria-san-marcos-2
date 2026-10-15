@@ -52,6 +52,7 @@ function Contacto() {
               name="nombre"
               type="text"
               autoComplete="name"
+              required
               maxLength={100}
               value={datos.nombre}
               onChange={cambiar}
@@ -92,6 +93,7 @@ function Contacto() {
               id="comentario"
               name="comentario"
               rows={5}
+              required
               maxLength={500}
               value={datos.comentario}
               onChange={cambiar}

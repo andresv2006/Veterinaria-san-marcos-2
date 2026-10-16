@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+
+// Contexto y Seguridad
+import { ProveedorSesion } from "./context/ContextoSesion";
+import { RutaProtegida } from "./components/RutaProtegida";
+
+// Componentes Generales
 import Cabecera from "./components/Cabecera";
 import Navegacion from "./components/Navegacion";
 import PiePagina from "./components/PiePagina";
+
+// Datos y Utilidades del Catálogo / Carrito
 import { productosIniciales } from "./data/catalogo";
+import { agregarAlCarrito, contarUnidades, quitarDelCarrito } from "./utils/carrito";
+import { guardarCarrito, guardarProductos } from "./utils/persistencia";
+
+// Páginas Generales y del Catálogo
 import AdminProductoDetalle from "./pages/admin/AdminProductoDetalle";
 import AdminProductos from "./pages/admin/AdminProductos";
 import Carrito from "./pages/Carrito";
@@ -16,10 +28,22 @@ import Multimedia from "./pages/Multimedia";
 import NoEncontrada from "./pages/NoEncontrada";
 import Nosotros from "./pages/Nosotros";
 import Noticias from "./pages/Noticias";
-import { agregarAlCarrito, contarUnidades, quitarDelCarrito } from "./utils/carrito";
-import { guardarCarrito, guardarProductos } from "./utils/persistencia";
 
-function App() {
+// Páginas del Módulo de Autenticación
+import { Login } from "./pages/Login";
+import { Registro } from "./pages/Registro";
+import { PanelAdministrador } from "./pages/PanelAdministrador";
+
+const SinAcceso = () => (
+  <div className="container py-4">
+    <div className="alert alert-danger text-center my-4" role="alert">
+      <h4>Acceso Denegado</h4>
+      <p>No tienes los permisos de Administrador necesarios para ver esta sección.</p>
+    </div>
+  </div>
+);
+
+export default function App() {
   const [productos, setProductos] = useState(() => {
     const guardados = localStorage.getItem("productos");
     return guardados ? JSON.parse(guardados) : productosIniciales;
@@ -58,10 +82,12 @@ function App() {
   }
 
   return (
-    <>
+    <ProveedorSesion>
       <Cabecera />
       <Navegacion cantidadCarrito={contarUnidades(carrito)} />
+
       <Routes>
+        {/* Rutas Públicas */}
         <Route path="/" element={<Inicio />} />
         <Route path="/nosotros" element={<Nosotros />} />
         <Route path="/noticias" element={<Noticias />} />
@@ -81,16 +107,26 @@ function App() {
             />
           }
         />
-        <Route
-          path="/admin/productos"
-          element={<AdminProductos productos={productos} onGuardar={guardarProducto} onEliminar={eliminarProducto} />}
-        />
-        <Route path="/admin/productos/:codigo" element={<AdminProductoDetalle productos={productos} />} />
+
+        {/* Rutas de Autenticación */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/registro" element={<Registro />} />
+        <Route path="/sin-acceso" element={<SinAcceso />} />
+
+        {/* Rutas Protegidas Exclusivas para Administradores */}
+        <Route element={<RutaProtegida rolesPermitidos={["ADMIN"]} />}>
+          <Route path="/admin" element={<PanelAdministrador />} />
+          <Route
+            path="/admin/productos"
+            element={<AdminProductos productos={productos} onGuardar={guardarProducto} onEliminar={eliminarProducto} />}
+          />
+          <Route path="/admin/productos/:codigo" element={<AdminProductoDetalle productos={productos} />} />
+        </Route>
+
         <Route path="*" element={<NoEncontrada />} />
       </Routes>
+
       <PiePagina />
-    </>
+    </ProveedorSesion>
   );
 }
-
-export default App;

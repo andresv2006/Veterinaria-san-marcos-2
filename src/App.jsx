@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Cabecera from "./components/Cabecera";
 import Navegacion from "./components/Navegacion";
@@ -15,9 +15,26 @@ import NoEncontrada from "./pages/NoEncontrada";
 import Nosotros from "./pages/Nosotros";
 import Noticias from "./pages/Noticias";
 import { agregarAlCarrito, contarUnidades, quitarDelCarrito } from "./utils/carrito";
+import { guardarCarrito, guardarProductos } from "./utils/persistencia";
 
 function App() {
-  const [carrito, setCarrito] = useState([]);
+  const [productos] = useState(() => {
+    const guardados = localStorage.getItem("productos");
+    return guardados ? JSON.parse(guardados) : productosIniciales;
+  });
+
+  const [carrito, setCarrito] = useState(() => {
+    const guardado = localStorage.getItem("carrito");
+    return guardado ? JSON.parse(guardado) : [];
+  });
+
+  useEffect(() => {
+    guardarProductos(productos);
+  }, [productos]);
+
+  useEffect(() => {
+    guardarCarrito(carrito);
+  }, [carrito]);
 
   function agregar(producto) {
     const item = carrito.find((registro) => registro.codigo === producto.codigo);
@@ -37,14 +54,14 @@ function App() {
         <Route path="/noticias/:id" element={<DetalleNoticia />} />
         <Route path="/multimedia" element={<Multimedia />} />
         <Route path="/contacto" element={<Contacto />} />
-        <Route path="/catalogo" element={<Catalogo productos={productosIniciales} onAgregar={agregar} />} />
-        <Route path="/productos/:codigo" element={<DetalleProducto productos={productosIniciales} onAgregar={agregar} />} />
+        <Route path="/catalogo" element={<Catalogo productos={productos} onAgregar={agregar} />} />
+        <Route path="/productos/:codigo" element={<DetalleProducto productos={productos} onAgregar={agregar} />} />
         <Route
           path="/carrito"
           element={
             <Carrito
               carrito={carrito}
-              productos={productosIniciales}
+              productos={productos}
               onQuitar={(codigo) => setCarrito(quitarDelCarrito(carrito, codigo))}
               onVaciar={() => setCarrito([])}
             />

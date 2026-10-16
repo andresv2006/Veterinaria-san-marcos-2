@@ -4,7 +4,7 @@ function TarjetaNoticia({ noticia }) {
   return (
     <article className="card h-100">
       <img
-        className="card-img-top"
+        className="card-img-top img-fluid"
         src={noticia.imagen}
         alt={noticia.textoAlternativo}
       />

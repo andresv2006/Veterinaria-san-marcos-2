@@ -1,7 +1,7 @@
 import { Container, Nav, Navbar } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-function Navegacion() {
+function Navegacion({ cantidadCarrito }) {
   return (
     <Navbar expand="md" bg="light" data-bs-theme="light">
       <Container>
@@ -25,6 +25,9 @@ function Navegacion() {
             </Nav.Link>
             <Nav.Link as={NavLink} to="/catalogo">
               Catálogo
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/carrito">
+              Carrito <span className="badge bg-success">{cantidadCarrito}</span>
             </Nav.Link>
             <Nav.Link as={NavLink} to="/contacto">
               Contacto

@@ -29,6 +29,9 @@ function Navegacion({ cantidadCarrito }) {
             <Nav.Link as={NavLink} to="/carrito">
               Carrito <span className="badge bg-success">{cantidadCarrito}</span>
             </Nav.Link>
+            <Nav.Link as={NavLink} to="/admin/productos">
+              Administración
+            </Nav.Link>
             <Nav.Link as={NavLink} to="/contacto">
               Contacto
             </Nav.Link>

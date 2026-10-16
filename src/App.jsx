@@ -4,6 +4,8 @@ import Cabecera from "./components/Cabecera";
 import Navegacion from "./components/Navegacion";
 import PiePagina from "./components/PiePagina";
 import { productosIniciales } from "./data/catalogo";
+import AdminProductoDetalle from "./pages/admin/AdminProductoDetalle";
+import AdminProductos from "./pages/admin/AdminProductos";
 import Carrito from "./pages/Carrito";
 import Catalogo from "./pages/Catalogo";
 import Contacto from "./pages/Contacto";
@@ -18,7 +20,7 @@ import { agregarAlCarrito, contarUnidades, quitarDelCarrito } from "./utils/carr
 import { guardarCarrito, guardarProductos } from "./utils/persistencia";
 
 function App() {
-  const [productos] = useState(() => {
+  const [productos, setProductos] = useState(() => {
     const guardados = localStorage.getItem("productos");
     return guardados ? JSON.parse(guardados) : productosIniciales;
   });
@@ -41,6 +43,18 @@ function App() {
     if (item && item.cantidad >= producto.stock) return;
 
     setCarrito(agregarAlCarrito(carrito, producto));
+  }
+
+  function guardarProducto(producto) {
+    const existe = productos.some((item) => item.codigo === producto.codigo);
+    if (existe) return;
+
+    setProductos([...productos, producto]);
+  }
+
+  function eliminarProducto(codigo) {
+    setProductos(productos.filter((producto) => producto.codigo !== codigo));
+    setCarrito(quitarDelCarrito(carrito, codigo));
   }
 
   return (
@@ -67,6 +81,11 @@ function App() {
             />
           }
         />
+        <Route
+          path="/admin/productos"
+          element={<AdminProductos productos={productos} onGuardar={guardarProducto} onEliminar={eliminarProducto} />}
+        />
+        <Route path="/admin/productos/:codigo" element={<AdminProductoDetalle productos={productos} />} />
         <Route path="*" element={<NoEncontrada />} />
       </Routes>
       <PiePagina />

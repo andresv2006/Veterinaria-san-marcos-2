@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1792114486495" clover="3.2.0">
+  <project timestamp="1792114486495" name="All files">
+    <metrics statements="42" coveredstatements="42" conditionals="22" coveredconditionals="22" methods="20" coveredmethods="20" elements="84" coveredelements="84" complexity="0" loc="42" ncloc="42" packages="5" files="18" classes="18"/>
+    <package name="src">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="App.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\App.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="14" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.assets">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="consulta.jpg" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\assets\consulta.jpg">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="mascotas.jpg" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\assets\mascotas.jpg">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="vacunacion.jpg" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\assets\vacunacion.jpg">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="7" coveredstatements="7" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="7"/>
+      <file name="Bienvenida.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\components\Bienvenida.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+      </file>
+      <file name="Cabecera.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\components\Cabecera.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="Navegacion.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\components\Navegacion.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="NoticiasDestacadas.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\components\NoticiasDestacadas.jsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="5" count="3" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+      </file>
+      <file name="PiePagina.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\components\PiePagina.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+      <file name="TarjetaNoticia.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\components\TarjetaNoticia.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="4" count="13" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.data">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="noticias.js" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\data\noticias.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="3" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.pages">
+      <metrics statements="33" coveredstatements="33" conditionals="20" coveredconditionals="20" methods="12" coveredmethods="12"/>
+      <file name="Contacto.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\pages\Contacto.jsx">
+        <metrics statements="20" coveredstatements="20" conditionals="16" coveredconditionals="16" methods="3" coveredmethods="3"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="6" count="92" type="stmt"/>
+        <line num="7" count="92" type="stmt"/>
+        <line num="8" count="92" type="stmt"/>
+        <line num="11" count="85" type="stmt"/>
+        <line num="12" count="85" type="stmt"/>
+        <line num="13" count="85" type="stmt"/>
+        <line num="17" count="3" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="20" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="23" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="26" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="27" count="1" type="stmt"/>
+        <line num="30" count="3" type="stmt"/>
+        <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="33" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="37" count="92" type="stmt"/>
+      </file>
+      <file name="DetalleNoticia.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\pages\DetalleNoticia.jsx">
+        <metrics statements="8" coveredstatements="8" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="42" count="4" type="stmt"/>
+      </file>
+      <file name="Inicio.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\pages\Inicio.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+      </file>
+      <file name="Multimedia.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\pages\Multimedia.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="NoEncontrada.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\pages\NoEncontrada.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="Nosotros.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\pages\Nosotros.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="1" type="stmt"/>
+      </file>
+      <file name="Noticias.jsx" path="D:\Descargas 2\Veterinaria-san-marcos-2\src\pages\Noticias.jsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="1" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

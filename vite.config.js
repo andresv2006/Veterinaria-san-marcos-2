@@ -13,7 +13,15 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       reportsDirectory: './coverage',
-      include: ['src/services/**', 'src/context/**', 'src/components/**', 'src/pages/**'],
+      include: [
+        'src/App.jsx',
+        'src/components/**',
+        'src/context/**',
+        'src/data/**',
+        'src/pages/**',
+        'src/services/**',
+        'src/utils/**',
+      ],
     },
   },
 })

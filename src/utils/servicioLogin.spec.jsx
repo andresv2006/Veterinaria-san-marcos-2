@@ -69,22 +69,90 @@ it("3. registrarUsuario guarda el arreglo serializado en localStorage", async ()
     expect(await screen.findByRole("alert")).toHaveTextContent("Todos los campos son obligatorios");
   });
 
-  // 6. Mock de Servicio Asíncrono 
-  it("6. Login utiliza el servicio inyectado/simulado para autenticar", async () => {
-    // Inyección de mock utilizando vi.fn() y mockResolvedValue
-    const servicioFalso = {
-      iniciarSesion: vi.fn().mockResolvedValue({
+  // 6. Mock de Servicio Asíncrono
+  it("6. Login llama al servicio simulado y redirige al usuario", async () => {
+    const iniciarSesionMock = vi.spyOn(servicioLogin, "iniciarSesion").mockResolvedValue({
         id: "1",
         nombre: "Usuario Mock",
         correo: "mock@demo.com",
         rol: "USER"
-      })
-    };
+    });
 
-    const resultado = await servicioFalso.iniciarSesion("mock@demo.com", "123456");
+    render(
+      <MemoryRouter initialEntries={["/login"]}>
+        <ProveedorSesion>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<h2>Inicio de prueba</h2>} />
+          </Routes>
+        </ProveedorSesion>
+      </MemoryRouter>
+    );
 
-    expect(servicioFalso.iniciarSesion).toHaveBeenCalled();
-    expect(resultado.nombre).toBe("Usuario Mock");
+    fireEvent.change(screen.getByLabelText(/correo electrónico/i), {
+      target: { value: "mock@demo.com" }
+    });
+    fireEvent.change(screen.getByLabelText(/contraseña/i), {
+      target: { value: "123456" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: /entrar/i }));
+
+    expect(await screen.findByText("Inicio de prueba")).toBeInTheDocument();
+    expect(iniciarSesionMock).toHaveBeenCalledWith("mock@demo.com", "123456");
+  });
+
+  it("redirige al panel cuando inicia sesión una cuenta administradora", async () => {
+    vi.spyOn(servicioLogin, "iniciarSesion").mockResolvedValue({
+      id: "1",
+      nombre: "Administradora",
+      correo: "admin@demo.com",
+      rol: "ADMIN"
+    });
+
+    render(
+      <MemoryRouter initialEntries={["/login"]}>
+        <ProveedorSesion>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/admin" element={<h2>Panel de prueba</h2>} />
+          </Routes>
+        </ProveedorSesion>
+      </MemoryRouter>
+    );
+    fireEvent.change(screen.getByLabelText(/correo electrónico/i), {
+      target: { value: "admin@demo.com" }
+    });
+    fireEvent.change(screen.getByLabelText(/contraseña/i), {
+      target: { value: "clave123" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: /entrar/i }));
+
+    expect(await screen.findByRole("heading", { name: "Panel de prueba" })).toBeInTheDocument();
+  });
+
+  it("muestra el error si el servicio rechaza las credenciales", async () => {
+    vi.spyOn(servicioLogin, "iniciarSesion").mockRejectedValue(
+      new Error("Credenciales de prueba inválidas")
+    );
+
+    render(
+      <MemoryRouter>
+        <ProveedorSesion>
+          <Login />
+        </ProveedorSesion>
+      </MemoryRouter>
+    );
+    fireEvent.change(screen.getByLabelText(/correo electrónico/i), {
+      target: { value: "ana@demo.cl" }
+    });
+    fireEvent.change(screen.getByLabelText(/contraseña/i), {
+      target: { value: "incorrecta" }
+    });
+    fireEvent.click(screen.getByRole("button", { name: /entrar/i }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "Credenciales de prueba inválidas"
+    );
   });
 
   // 7. Ruta Protegida (Usuario no autenticado)

@@ -17,4 +17,14 @@ describe("Catalogo", () => {
     expect(screen.getByText("1 producto(s) encontrado(s)")).toBeInTheDocument();
     expect(screen.getByText("Nobivac Rabies")).toBeInTheDocument();
   });
+
+  it("filtra también los servicios por categoría", async () => {
+    const usuario = userEvent.setup();
+    render(<MemoryRouter><Catalogo productos={productosIniciales} /></MemoryRouter>);
+
+    await usuario.selectOptions(screen.getByLabelText("Categoría de servicio"), "Vacunación");
+
+    expect(screen.getByText("Vacuna antirrábica canina")).toBeInTheDocument();
+    expect(screen.queryByText("Consulta general")).not.toBeInTheDocument();
+  });
 });

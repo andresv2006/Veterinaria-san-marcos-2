@@ -2,6 +2,8 @@ import { Route, Routes } from "react-router-dom";
 import Cabecera from "./components/Cabecera";
 import Navegacion from "./components/Navegacion";
 import PiePagina from "./components/PiePagina";
+import { productosIniciales } from "./data/catalogo";
+import Catalogo from "./pages/Catalogo";
 import Contacto from "./pages/Contacto";
 import DetalleNoticia from "./pages/DetalleNoticia";
 import Inicio from "./pages/Inicio";
@@ -11,6 +13,10 @@ import Nosotros from "./pages/Nosotros";
 import Noticias from "./pages/Noticias";
 
 function App() {
+  function agregar(producto) {
+    console.log("Producto seleccionado:", producto.nombre);
+  }
+
   return (
     <>
       <Cabecera />
@@ -22,6 +28,7 @@ function App() {
         <Route path="/noticias/:id" element={<DetalleNoticia />} />
         <Route path="/multimedia" element={<Multimedia />} />
         <Route path="/contacto" element={<Contacto />} />
+        <Route path="/catalogo" element={<Catalogo productos={productosIniciales} onAgregar={agregar} />} />
         <Route path="*" element={<NoEncontrada />} />
       </Routes>
       <PiePagina />

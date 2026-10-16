@@ -23,6 +23,9 @@ function Navegacion() {
             <Nav.Link as={NavLink} to="/multimedia">
               Multimedia
             </Nav.Link>
+            <Nav.Link as={NavLink} to="/catalogo">
+              Catálogo
+            </Nav.Link>
             <Nav.Link as={NavLink} to="/contacto">
               Contacto
             </Nav.Link>

@@ -6,6 +6,7 @@ import { productosIniciales } from "./data/catalogo";
 import Catalogo from "./pages/Catalogo";
 import Contacto from "./pages/Contacto";
 import DetalleNoticia from "./pages/DetalleNoticia";
+import DetalleProducto from "./pages/DetalleProducto";
 import Inicio from "./pages/Inicio";
 import Multimedia from "./pages/Multimedia";
 import NoEncontrada from "./pages/NoEncontrada";
@@ -29,6 +30,7 @@ function App() {
         <Route path="/multimedia" element={<Multimedia />} />
         <Route path="/contacto" element={<Contacto />} />
         <Route path="/catalogo" element={<Catalogo productos={productosIniciales} onAgregar={agregar} />} />
+        <Route path="/productos/:codigo" element={<DetalleProducto productos={productosIniciales} onAgregar={agregar} />} />
         <Route path="*" element={<NoEncontrada />} />
       </Routes>
       <PiePagina />
